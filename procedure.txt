@@ -1,0 +1,194 @@
+
+
+// for creating environment fine 
+npm i dotenv
+
+this is going to give me an Access to fetch the value of the port from the environment variable file 
+with the help of a process module which is a coremodule of node.js 
+Now variables from .env files are available in server.js by
+
+const dotenv = require('dotenv').config();
+const port = process.env.{variable_name}
+
+
+// now we will use thunderclient on the place of postmam to avoid switching between postman and browser
+install thunderclient extension in vs code
+
+trying this-working fine
+app.get('/', (req, res) =>{
+    // res.send("Contact manager is available") // sending response normally
+    res.json({message:"Contact manager is available"}) // sending json
+    res.status(200).json({message:"Contact manager is available"}) // if sending status as well
+})
+
+
+now we created this in contactRoutes
+''''''''''''''''''''
+const express = require('express');
+const router = express.Router();
+
+
+router.route('/').get( (req, res)=>{
+    res.status(200).json({message:"Get All Contacts!"});
+})
+
+router.route('/').post( (req, res)=>{
+    res.status(200).json({message:"Create Contact"});
+})
+
+router.route('/:id').get( (req, res)=>{
+    res.status(200).json({message:`Get contact for ${req.params.id}`});
+})
+
+router.route('/:id').put( (req, res)=>{
+    res.status(200).json({message:`Update contact for ${req.params.id}`});
+})
+
+router.route('/:id').delete( (req, res)=>{
+    res.status(200).json({message:`Delete contact for ${req.params.id}`});
+})
+
+module.exports = router
+
+''''''''''''''''''''''''''
+
+and edited server.js with 
+
+app.use("/api/contacts", require("./routes/contactRoutes"))
+
+by this we are able to Access
+
+GET http://localhost:5001/api/contacts/  
+// result: Get All Contacts!
+
+POST http://localhost:5001/api/contacts/
+// result: 'Create Contact'
+
+GET http://localhost:5001/api/contacts/1
+// result: 'Get contact for 1'
+
+PUT http://localhost:5001/api/contacts/1
+// result: 'Update contact for 1'
+
+DELETE http://localhost:5001/api/contacts/1
+// result: 'Delete contact for 1'
+
+
+----------------------
+Now we will create controllers - contains all logocs for req, res, later connnect with DB...
+
+basically the callback functions from contactRoutes will be sepearated and named and controller. and imported in contactRoutes
+
+created this contact controller file
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+const getContacts = (req, res) =>{
+    res.status(200).json({message:"Get all contacts"})
+}
+const createContact = (req, res) =>{
+    res.status(200).json({message:`Create contact`});
+}
+const getContact = (req, res) =>{
+    res.status(200).json({message:`Get contact for ${req.params.id}`});
+}
+const updateContact = (req, res) =>{
+    res.status(200).json({message:`Update contact for ${req.params.id}`});
+}
+const deleteContact = (req, res) =>{
+    res.status(200).json({message:`Delete contact for ${req.params.id}`});
+}
+module.exports = {
+    getContact,
+    getContacts,
+    createContact,
+    updateContact,
+    deleteContact
+}
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+imported in contactRoutes as 
+
+const {
+    getContact,
+    getContacts,
+    createContact,
+    updateContact,
+    deleteContact
+} = require("../controllers/contactController")
+
+router.route('/').get(getContacts)
+router.route('/').post(createContact)
+router.route('/:id').get(getContact)
+router.route('/:id').put(updateContact)
+router.route('/:id').delete(deleteContact)
+
+now the code is made too smaller here
+changing some more to comprss more by changing the same routes in one line...
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+router.route('/').get(getContacts).post(createContact)
+router.route('/:id').get(getContact).put(updateContact).delete(deleteContact)
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+==========
+now we will send the data from client to server in body then it will become undefined.
+because whenever we are sending data from client to server then it need a nody parser.
+add on line in server.js
+app.use(express.json());
+
+now are able to get req.body as json.
+
+========error handelling========
+we can also get req.body as {} lets handelle this.
+checking the mandatory parameters and not there then throw error accordingly.
+so id the req.body is not good the we received response as HTML
+'''''''''''''''''''''''''''''''''''
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Error</title>
+  </head>
+  <body>
+    <pre>Error: All Fields must be filled in<br> &nbsp; &nbsp;at createContact (/Users/skluad/Documents/express-project/mycontact-backend/controllers/contactController.js:16:15)<br> &nbsp; &nbsp;at Layer.handle [as handle_request] (/Users/skluad/Documents/express-project/mycontact-backend/node_modules/express/lib/router/layer.js:95:5)<br> &nbsp; &nbsp;at next (/Users/skluad/Documents/express-project/mycontact-backend/node_modules/express/lib/router/route.js:144:13)<br> &nbsp; &nbsp;at next (/Users/skluad/Documents/express-project/mycontact-backend/node_modules/express/lib/router/route.js:140:7)<br> &nbsp; &nbsp;at Route.dispatch (/Users/skluad/Documents/express-project/mycontact-backend/node_modules/express/lib/router/route.js:114:3)<br> &nbsp; &nbsp;at Layer.handle [as handle_request] (/Users/skluad/Documents/express-project/mycontact-backend/node_modules/express/lib/router/layer.js:95:5)<br> &nbsp; &nbsp;at /Users/skluad/Documents/express-project/mycontact-backend/node_modules/express/lib/router/index.js:284:15<br> &nbsp; &nbsp;at Function.process_params (/Users/skluad/Documents/express-project/mycontact-backend/node_modules/express/lib/router/index.js:346:12)<br> &nbsp; &nbsp;at next (/Users/skluad/Documents/express-project/mycontact-backend/node_modules/express/lib/router/index.js:280:10)<br> &nbsp; &nbsp;at Function.handle (/Users/skluad/Documents/express-project/mycontact-backend/node_modules/express/lib/router/index.js:175:3)</pre>
+  </body>
+</html>
+'''''''''''''''''''''''''''''''''''''''''
+but we should get json data.
+for this ->
+we create a custom middleware, which will accept req , res and then in between it can transform the response in json
+middleware-> 
+input = req, res
+work = transforming response
+output = converted response
+
+for this ->
+making middleware folder and creating file in it as errorHandler.
+''''''''''''''''''''''''''''''''
+const errorHandler = (err,req,res,next) => {
+    const statusCode = res.statusCode? res.statusCode: 500;
+    res.json({message:err.message, stackTrace:err.stack});
+}
+
+module.exports = errorHandler;
+'''''''''''''''''''''''''''''''''
+imported and used in server.js
+now we are getting response like this:
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+{
+  "message": "All Fields must be filled in",
+  "stackTrace": "Error: All Fields must be filled in\n    at createContact (/Users/skluad/Documents/express-project/mycontact-backend/controllers/contactController.js:16:15)\n    at Layer.handle [as handle_request] (/Users/skluad/Documents/express-project/mycontact-backend/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/skluad/Documents/express-project/mycontact-backend/node_modules/express/lib/router/route.js:144:13)\n    at next (/Users/skluad/Documents/express-project/mycontact-backend/node_modules/express/lib/router/route.js:140:7)\n    at Route.dispatch (/Users/skluad/Documents/express-project/mycontact-backend/node_modules/express/lib/router/route.js:114:3)\n    at Layer.handle [as handle_request] (/Users/skluad/Documents/express-project/mycontact-backend/node_modules/express/lib/router/layer.js:95:5)\n    at /Users/skluad/Documents/express-project/mycontact-backend/node_modules/express/lib/router/index.js:284:15\n    at Function.process_params (/Users/skluad/Documents/express-project/mycontact-backend/node_modules/express/lib/router/index.js:346:12)\n    at next (/Users/skluad/Documents/express-project/mycontact-backend/node_modules/express/lib/router/index.js:280:10)\n    at Function.handle (/Users/skluad/Documents/express-project/mycontact-backend/node_modules/express/lib/router/index.js:175:3)"
+}
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+stackTrace give the issue location or the error information
+we can control if we do not want to send the stackTrace to production.
+===================
+used switch in error handller for multiple type errors
+===============
+if we use mongoDB then we see the promises. to handle the promises we use async fn. so adddind async in all controllers fn.
+
+npm i express-async-handler
+
+wrap all fn in asyncHandler
+
+
+
+

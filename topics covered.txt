@@ -1,0 +1,27 @@
+
+
+two hours long Express crash course for beginners
+
+building a node Express project from scratch.
+Name: contact manager application
+
+Topics covering:
+
+1. we will first start with the express project setup and
+2. then we will move to how we can create an Express server
+3. we will also see how we can install the Thunder client to test our apis 
+4. then we will set up the express router 
+5. and after that we will see that how we can handle error in Express and using the async Handler 
+6. then we are going to see how we can set up the express middleware for our project
+7. after that we will have the mongodb setup and 
+8. then we will learn how we can use Mongoose schema in order to communicate with our database 
+9. then we will see how we can have the crud API in our project
+10. next topic that we will cover is the user authentication we will see how we can authenticate our users
+11. and we'll have the registration and the login endpoints 
+12. then we will see how we can have the controllers which will help us to communicate with our database for different operations 
+13. then we will see how we can do the password hashing and then compare the hash password with the raw password 
+14. then we will also use the JWT token so we are going to have the sign in and verify of the JWT token for the authentication part 
+15. then we will see how we can handle the relationship using Mongoose schema for our different documents in our mongodb
+16. then we are going to see how we can do the protected routes so only authenticated user will be able to access those routes
+17 next we are going to have the user authorization so that only authorized user should be able to access our endpoints
+18. and after that in the end we are going to see the API testing so how we are going to test our API and the project

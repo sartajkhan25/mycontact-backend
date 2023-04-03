@@ -1,0 +1,5022 @@
+
+
+two hours long Express crash course for beginners
+
+building a node Express project from scratch.
+Name: contact manager application
+
+Topics covering:
+
+1. we will first start with the express project setup and
+
+2. then we will move to how we can create an Express server
+
+3. we will also see how we can install the Thunder client to test our apis 
+
+4. then we will set up the express router 
+
+5. and after that we will see that how we can handle error in Express and using the async Handler 
+
+6. then we are going to see how we can set up the express middleware for our project
+
+7. after that we will have the mongodb setup and 
+
+8. then we will learn how we can use Mongoose schema in order to communicate with our database 
+
+9. then we will see how we can have the crud API in our project
+
+10. next topic that we will cover is the user authentication we will see how we can authenticate our users
+
+11. and we'll have the registration and the login endpoints 
+
+12. then we will see how we can have the controllers which will help us to communicate with our database for different operations 
+
+13. then we will see how we can do the password hashing and then compare the hash password with the raw password 
+
+14. then we will also use the JWT token so we are going to have the sign in and verify of the JWT token for the authentication part 
+
+15. then we will see how we can handle the relationship using Mongoose schema for our different documents in our mongodb
+
+16. then we are going to see how we can do the protected routes so only authenticated user will be able to access those routes
+
+17 next we are going to have the user authorization so that only authorized user should be able to access our endpoints
+
+18. and after that in the end we are going to see the API testing so how we are going to test our API and the project
+
+
+we are going to build
+
+the apis of how we can manage the
+
+contacts we are also going to introduce
+
+the authentication and authorization
+
+Concept in order to build this
+
+application so before we go deep dive I
+
+want to give you some overview on the
+
+restful API conventions because we are
+
+going to build the rest apis so this is
+
+a restful API conventions where you will
+
+see that we have the crud actions and
+
+first what we will do is we will simply
+
+going to build a crud API for the
+
+contacts and contacts will be our
+
+resource so we will have different crud
+
+actions like get all contacts get a
+
+single contact create contact update
+
+contact and delete contact and for that
+
+we are going to use the HTTP methods as
+
+get put post and delete and on the
+
+extreme right you will see the end
+
+points so we are having a slash API
+
+slash contacts and for the other one we
+
+have the API contacts slash I ID so we
+
+will have to pass the ID in order to get
+
+an individual contact or update a
+
+contact or delete a contact and to start
+
+with this application we need to install
+
+the node.js in our machine so I already
+
+have the node.js installed in my machine
+
+and if you want to install it then you
+
+can go to the official documentation of
+
+node.js and then you can simply install
+
+the current version or the recommended
+
+version for the most users now we will
+
+also need a visual studio code so you
+
+can download the visual studio code from
+
+the official documentation now let's
+
+jump to the visual studio code and here
+
+what we are going to do is first we are
+
+going to set up our project so let's go
+
+to the terminal and I'm going to open
+
+the terminal all right and then I'm
+
+going to go to my documents directory so
+
+let's go to the documents and inside the
+
+documents directory I'm
+
+and here I'm going to create a new
+
+directory which will be
+
+so this will reflect the backend apis of
+
+my contact all right so now I will go to
+
+my contacts directory and here first we
+
+need to initialize our project so what I
+
+can do is I can write the npm init and
+
+with this npm in it it's going to ask a
+
+few questions so that it will generate
+
+our packet Json file so for the package
+
+name I'm going to give the name as my
+
+contacts backend API all right version
+
+is still 1.0.0 and here it will be this
+
+is Express project for my contacts
+
+backend API and then the next thing is
+
+we need to define the entry point so I'm
+
+going to define the entry point as
+
+server.js I'm not going to add anything
+
+on the test command I will not add the
+
+git repository no keywords as an author
+
+I'm going to add the page malvia and for
+
+the license I'm going to have the MIT
+
+and then I'm going to click yes so now
+
+we have the packet Json file now let's
+
+open this directory in our Visual Studio
+
+code so I'm going to do an open I will
+
+go to the documents and I'm going going
+
+to open the express project and inside
+
+that my contacts so I will just click on
+
+the trust the author and you will see
+
+that we have the packet Json now we
+
+haven't installed any dependencies and
+
+there is not much inside our packet Json
+
+file now the next thing what we will do
+
+is we are going to create a git ignore
+
+file so I will go here and I will create
+
+the git ignore and inside the get ignore
+
+I'm going to add the node modules so we
+
+don't want the node modules to be part
+
+of our git repository and I also don't
+
+want to add the dot EnV file because
+
+that will be only for the development
+
+purpose all right so now we have that
+
+and now let's create the server.js file
+
+so I'm going to go here I will have the
+
+server.js so we have the server.js and
+
+inside the server.js let's create a
+
+basic Express server so for that first
+
+we need to install the express so what I
+
+will do is let's go to the terminal and
+
+inside the terminal we will install the
+
+express.js so let's install the npm and
+
+install
+
+Express and then I'm going to hit enter
+
+all right so we have the express and
+
+along with that we will also need to
+
+install the node Bond so that it will
+
+automatically restart our server
+
+whenever we make any changes all right I
+
+will go to the package Json and we can
+
+verify that we have the node mon as Dev
+
+dependency and for the dependency we
+
+have the express.js now in the scripts
+
+and I will add the scripts to start my
+
+server so what I will do is I'm going to
+
+have the start and for the start what I
+
+will write is I'm going to write the
+
+node server dot JS and I will also add
+
+one more which will be for the
+
+development and for the development I'm
+
+going to run with the help of a node mon
+
+so let's have the node monserver.js I
+
+will save it and now if I go and run it
+
+so let's run the npm Run Dev and this is
+
+going to run our server.js but right now
+
+we don't have anything in the server.js
+
+so what I will do is I'm going to do a
+
+simply console.log and write I am in
+
+Express project all right I will save it
+
+and you will see that as soon as I save
+
+is the node Bond restarts the file
+
+automatically and we see that I am in
+
+the X Plus project so now we have the
+
+express installed now let's create a
+
+Express server so we'll have the express
+
+which will be equals to the require and
+
+that will be the express I have
+
+misspelled the required so let me
+
+correct and then what I have to do is I
+
+will Define a port so I will have to
+
+define a port and let's define the port
+
+as 5000. once we have the express
+
+installed we are going to have equals to
+
+the express now since we have created
+
+the app now we can have a listen on the
+
+app on that Port 5000 so what I will do
+
+is I'm going to have the app Dot listen
+
+and this will listen on the port that we
+
+have created so we have the port and
+
+this port is going to give us a callback
+
+and here we can write the
+
+console.log and let's have the server
+
+running on Port and we can pass the port
+
+here all right I will save it now you
+
+see see that we have a server running on
+
+the port 5000 so this is the static
+
+server which we have given but usually
+
+in our project we are going to have an
+
+environment variable file where we are
+
+going to define the port so let's do
+
+that so what I will do is I'm going to
+
+create a new file with the name dot EnV
+
+and here I will have the port and I will
+
+give the port as 5001 so I can make use
+
+of a DOT EnV package so let's install
+
+the dot ENB package so I'm going to go
+
+here and I will have the npm
+
+install.enb so now as I have the dot e
+
+and V this is going to give me an Access
+
+to fetch the value of the port from the
+
+environment variable file with the help
+
+of a process module which is a core
+
+module of node.js so I will show you how
+
+we can do that let's have a constant dot
+
+EnV and this will be equals to the
+
+require and I'm going to pass the dot
+
+EnV and then we have to use the config
+
+method I will change this to equals to
+
+and now we have this it has a process
+
+dot EnV and I can pass the port and my
+
+server is now running on the port 5001
+
+which I have specified in the
+
+environment variable file now the next
+
+thing we need to do is since we have
+
+created the app and we are listening on
+
+the port now we need to test it so if we
+
+want to test the apis we need an HTTP
+
+client there are multiple HTTP clients
+
+which you can use but for this project
+
+I'm going to use the Thunder client
+
+which will be an extension inside the
+
+visual studio code itself you can also
+
+prefer to use the postman which will be
+
+a separate application so you need to
+
+switch between your Visual Studio code
+
+and the postman so that is the reason
+
+I'm going to use the thunderclion so if
+
+you want to use the thunderclion you can
+
+click on this icon in the extension and
+
+then you can search for the under client
+
+and you can just install it once you
+
+install the Thunder client what you will
+
+see is you will see an icon of the
+
+Thunder client so if you can click on
+
+that and if I go and create a new
+
+request then you will see that I'm going
+
+to remove all this I will have the http
+
+localhost my port is 5001 and now I will
+
+just send a request so what I will do is
+
+I'm going to click on the sender and you
+
+will see that as soon as I click on the
+
+send we see a 404 because we haven't
+
+configured any route for this and we see
+
+an HTML response with an error page now
+
+let's go and change it so what I will do
+
+is I'm going to have the app and then
+
+I'm going to use a get method and I want
+
+to listen for API slash contacts so let
+
+me have the contacts and then when I
+
+have this it's going to give me a
+
+request and a response and this will be
+
+an arrow function and then what I can do
+
+is I can do a res dot send and I can
+
+give a message here which I want so what
+
+I will write is uh get all contacts our
+
+server is restarted and now if I go here
+
+and for API context and now if I click
+
+on the get all contacts now we are not
+
+passing a response as a Json format but
+
+if we want to pass our response as a
+
+Json what we can do is we can use a res
+
+dot Json and this is going to give us a
+
+Json format so what I will do is I'm
+
+going to have the message and the
+
+message will be like this and now if I
+
+send then you will see that we get a
+
+message in the Json format now what we
+
+can also do is we can also pass the
+
+status code so what I will do is I'm
+
+going to have the res dot status and I
+
+can have the status as 200 and then I
+
+can pass the Json response I will save
+
+it and if I hit it you will still see
+
+that we have the same result but what we
+
+are going to do is we are not going to
+
+configure all our routes in the
+
+server.js so to make a clean
+
+implementation we are going to create a
+
+new folder which will handle all our
+
+routes so I'm going to go here and let's
+
+create the routes folder and inside the
+
+routes I'm going to create a new file
+
+which will be the contact routes dot JS
+
+and now in the contact route.js what we
+
+are going to do is let's first import
+
+require and I'm going to have the
+
+express now what we need to do is now we
+
+can configure the routes on this router
+
+so I will have the router dot route and
+
+in this router.rout what I can do is if
+
+I go here then we can actually take this
+
+completely so I'm gonna cut to this and
+
+then I'm going to add it here I will
+
+save it and here what we can do is
+
+instead of using this uh get what we
+
+will do is we want to make use of a use
+
+and here we can Define our contact
+
+routes so for that what I will do is
+
+since for every API we are going to have
+
+this API slash contacts as a common API
+
+URL so what I will do is I'm going to
+
+cut this and I will have simply slash
+
+here and here we can make use of that so
+
+we will have this and then we need that
+
+whenever we have the app.use so usually
+
+this app.use are known as middleware so
+
+we are adding the middleware in our
+
+Express project so here we will do a
+
+require and here we can Define the path
+
+of our route so that will be the slash
+
+route slash contact route I will save it
+
+and then if we go in the routes now then
+
+here what we can do is we need to export
+
+our router so for that what we will do
+
+is let's go and let's use the module dot
+
+export so I'm going to have the module
+
+dot export and we are going to export
+
+the router I will save it and you will
+
+see that as soon as we save it now we
+
+don't see the error and if we're going
+
+to try it in the Thunder client we will
+
+still going to see the same results so
+
+if I send it so we are getting an error
+
+that means we made a mistake so here we
+
+are using the app dot use as middleware
+
+for our API URL slash API slash context
+
+and then we are passing our contact
+
+routes now if we go to the contact
+
+routes we have the router dot route and
+
+then on this route we have to Define our
+
+get method so we are going to have a get
+
+which is going to give us a request
+
+response and I will save it now let's go
+
+and try so if I send it now we see that
+
+we have the get all contacts so this we
+
+have defined it now what we can do is uh
+
+this is one of the route now similarly
+
+we need to define the put post and
+
+delete so what I will do is I'm going to
+
+copy this and since for this uh for the
+
+Post also we are going to have the same
+
+endpoint which will be the Slash and
+
+here we are going to have the instead of
+
+get all contacts we are going to write
+
+here as create contact now the next one
+
+is the Slash and then we need to pass
+
+the ID here so we will have the ID and
+
+then we are going to have a put which is
+
+going to update our contact so let's
+
+change the message as update contact and
+
+whenever we have the ID what we need to
+
+do is we are going to have a update
+
+contact let's have the pair Ram so what
+
+I will do is I'm going to use the back
+
+tick and here what I will do is I'm
+
+going to have the request dot firearm
+
+dot ID I will save it and for the delete
+
+I'm going to change this to delete and
+
+for the delete also we are going to have
+
+the ID so let's have the ID and then
+
+here also what I will do is I'm going to
+
+copy this let's have the backtick and
+
+then I'm going to have here delete
+
+contact for this particular ID we can
+
+also make a route for the get an
+
+individual contact so I'm going to have
+
+a get here I will have the request
+
+response and here I'm going to have the
+
+get contact for this I will save it so
+
+now we have created multiple routes now
+
+let's give a try in our Postman first we
+
+know that when we have a get request and
+
+then whenever we have a get method and
+
+then we have the contacts resource and
+
+if we send it we see get all contacts
+
+now let's do a post I'm going to have a
+
+post and I will send it and it says that
+
+we have a create contact now let's have
+
+a put so what I will do is I'm going to
+
+pass an ID which is one and I will send
+
+it then you will see that the update
+
+contact for one now let's go and check
+
+for the delete it will going to give us
+
+the same delete contact for one and if
+
+we do a get request then it will be a
+
+get for an individual contact which will
+
+be a get contact for one all right so
+
+now we have all our routes and now what
+
+we are going to do is we are going to
+
+create the controllers so that
+
+controllers is going to contain all our
+
+Logic for the request response and it is
+
+going to connect with our database so
+
+what I will do is let's go and create
+
+the controllers folder so I'm going to
+
+go here I'm going to have the
+
+controllers and inside the controllers
+
+what I will do is I'm going to create my
+
+contact controller so let's create a
+
+file and I'm going to have the contact
+
+controller dot JS and inside the contact
+
+controller uh what we are going to do is
+
+whenever we create the API methods uh we
+
+always need to give some labels to that
+
+so how we can give the label is I'm
+
+going to write a description and the
+
+description will be for get all contacts
+
+and then I'm going to have the route so
+
+my route will be it will be a get slash
+
+API slash contacts and then we are going
+
+to define the access to the API so for
+
+now the access is public later on we are
+
+going to make it as a private whenever
+
+we when we are going to introduce the
+
+authentication all right now I'm going
+
+to create a constant here and that
+
+constant will be the get contact and
+
+then what I can do is I can simply
+
+remove this logic part from here and
+
+then I'm going to cut it and I'm going
+
+to add it here all right I will save it
+
+and then in the end what I have to do is
+
+I have to do the module dot export and
+
+I'm going to export the get contact all
+
+right I will save it now now I can make
+
+use of the get contact in my contact
+
+routes so let's import that so I will
+
+have the constant then I'm going to have
+
+the get contact and this contact will be
+
+coming from the so I will have the
+
+require dot slash dot dot slash
+
+controller slash contact controller and
+
+now what I can do is I can make use of
+
+this get contact and I can add the get
+
+contact here I will copy and then I will
+
+add it here now this way we can also uh
+
+modify for the Post get put in delete so
+
+let's go and create it so what I will do
+
+is I'm going to copy this for the create
+
+so in this it's going to be create
+
+contacts so let me change this to create
+
+contact and this will be changed to
+
+create new contact so let's have a
+
+create new contact all right I will
+
+change this to contact this will now
+
+change to post and the access will still
+
+be the public and then whenever we
+
+create a new contact we actually going
+
+to give a response as 201 which is as
+
+resource created now this will get
+
+changed so let's go and get it from here
+
+so I'm going to go and take this out I'm
+
+going to cut it and let's add in my
+
+create contact I'm going to change this
+
+to zero one I'll save it now we need to
+
+expose this so let's have it here now
+
+let's go and create for the put for
+
+delete and I'm going to add it for get
+
+an individual contact so this will be
+
+the get contact this will become a get
+
+request here we need to pass an ID all
+
+right this will be a public and here we
+
+are going to have a get contact all
+
+right and then we can just add it from
+
+here so I'm going to cut this and I'm
+
+going to add it here so let me add it
+
+here and since we are getting an error
+
+because this should be get contacts and
+
+this is the create contact which we are
+
+going to change it here anyway all right
+
+so we have the get individual contact
+
+and the next thing is let's update the
+
+contact so let's have the update contact
+
+this will be changed to update contacts
+
+so I'm going to change it to update
+
+contact and then we can change this so
+
+let's go to the routes and from the
+
+routes I'm going to copy this cut and
+
+then add it here and the last one is the
+
+delete contact so let's have the delete
+
+contact this will now change to delete
+
+this will change to put this will change
+
+to delete and then we have the delete
+
+contact API slash contacts and this will
+
+have the ID we forgot to add ID here so
+
+let's add the ID as well the access will
+
+be public and then we are going to add
+
+remove it from here cut it and let's add
+
+it here all right so now we have created
+
+all the methods in our controller now we
+
+need to expose them so I will going to
+
+have the get contact then I'm going to
+
+have the update contact and then there
+
+is a delete contact now we can use all
+
+these method in our routes file so I'm
+
+going to copy this and let's add it here
+
+now we have it now let's add the method
+
+in our route so I have a create contact
+
+so I'm going to copy and I'm going to
+
+add it here for get contact I'm going to
+
+add it here and this will become get
+
+contacts so this will get changed to get
+
+contacts so we have to go and change
+
+here as well this will be the get
+
+contacts I will save it now let's go
+
+here I will save it here as well and
+
+then we have the update contact so let's
+
+add the update contact and then the
+
+delete contact so I'm going to add the
+
+delete contact as well so we have
+
+defined the routes we now also have the
+
+controller which is going to contain the
+
+logic of all our request connection to
+
+the database now what we can do is here
+
+we can actually simplify mode and what
+
+we will do is since you will notice that
+
+these two routes are almost the same so
+
+what we can do is we can actually write
+
+here dot post cut it and I'm going to
+
+add it here now we can remove this so
+
+this way it can help us to save some
+
+lines so for the other three routes we
+
+have a common uh route so we are going
+
+to just cut and we are going to add it
+
+here so let's add it here and I'm going
+
+to remove this now we have it and now
+
+let's give a try we are going to test
+
+our apis again so if I go here and if I
+
+have the contacts then we still see the
+
+contacts so our apis are still working
+
+we have the foot I'm going to add the ID
+
+I still see the ID for delete I still
+
+see the ID and for the get individual
+
+contact I still see that so everything
+
+works fine so the next thing we are
+
+going to do is we are going to accept
+
+the body from the request so what we
+
+will do is if we go to the Thunder
+
+client and if we we do a post request
+
+and inside the post if we want to pass a
+
+body so let's have a body so what I will
+
+do is for the contact I'm going to have
+
+the name so let's add the name as the
+
+page I'm going to have my email address
+
+so let's have the the page at the rate
+
+gmail.com and then I'm going to pass the
+
+phone number so let's have the phone and
+
+I'm going to add some random phone
+
+number now I'm going to send this
+
+request so that we can create the new
+
+contact so if we go in our contact
+
+controller then we will see that let's
+
+do first the console log of the request
+
+so I'm going to have the console.log I
+
+will have the request dot body so I need
+
+this body in order to create the new
+
+contact so I'm going to have the console
+
+log so the request body is and I'm going
+
+to have the request body now if I see in
+
+the terminal and if I go here and if I
+
+click on the send then you will see that
+
+the request body is undefined and that
+
+is because whenever you need to accept
+
+some data from the client to our server
+
+we need to use a body parser so that we
+
+can parse the stream of the data that we
+
+are receiving from the client and for
+
+that what we have to do is we need to
+
+make use of a middleware and express
+
+provide us the middleware for the Json
+
+object which we can get it from the
+
+client so what I will do is I'm going to
+
+go to my server.js and in the server.js
+
+we are going to apply a inbuilt
+
+middleware which is the app dot use and
+
+then here I can have the express and I
+
+can have the Json and now this is going
+
+to provide a passer which will help us
+
+to pass the data stream that we receive
+
+from the client on the server side so if
+
+we go back and now this time if we send
+
+a request then you will see that we get
+
+the body which is the name email and the
+
+phone number which is the contact that
+
+we want to create now what we will do is
+
+now if case if we don't pass anybody so
+
+if we don't have any of the body and if
+
+we still send it then we are going to
+
+see the empty body but we don't want to
+
+accept this so now let's see how we can
+
+do the error handling uh with the help
+
+of the Express framework so if we go to
+
+our controller and in the controller
+
+what I will do is now we have the
+
+request body uh first I'm going to
+
+destructure it so I'm going to have the
+
+name email and the phone and this will
+
+be coming from the request dot party now
+
+I'm going to apply a condition that if
+
+we don't have a name or we don't have an
+
+email or if we don't have a phone so in
+
+that case what I want is I want to throw
+
+an error so I'm going to have the
+
+response dot status the status will be
+
+400 and then I'm going to use the throw
+
+keyword and then throw an error and here
+
+I'm going to write is as all fills are
+
+mandatory all right I will save it and
+
+now let's see so if I go back here and
+
+if I send a request then you will see
+
+that we we get an error we also see that
+
+we have an error message all fills are
+
+mandatory but you see that this error
+
+message is not in adjacent format it's
+
+in the form of an HTML so for that if we
+
+want to change it what we need to do is
+
+we need to create a custom middleware
+
+which is going to accept the request
+
+response and then in between it's going
+
+to transform the response into a Json so
+
+what I will do is I'm going to create a
+
+new folder and I will name it as
+
+middleware and inside the Middle where
+
+I'm going to create a file with error
+
+handler.js so I'm going to go here let's
+
+have the error
+
+handler.js I will just make it camel
+
+case and now in the error handle.js what
+
+I can do is I'm going to create a
+
+constant error Handler and this is going
+
+to have a request response next and then
+
+the first parameter will be an error all
+
+right so we have that and this is going
+
+to be an arrow function and then what we
+
+can do is is we can simply do the module
+
+dot export so let's have the module dot
+
+export and we can export the error
+
+Handler and now if we want to use this
+
+error Handler we need to apply this in
+
+our server.js so if we go to the
+
+server.js then what we can do is we can
+
+make use of the app dot use so whenever
+
+we need to use a middleware we make use
+
+of this app dot use and we need to use
+
+the error Handler now the error Handler
+
+is auto imported so now we have created
+
+an error handle middleware and we have
+
+also used it in our server.js now let's
+
+transform this so what I'm going to do
+
+here is that I'm going to create a
+
+constant I will have the status code and
+
+this status code will be in the response
+
+so if we go in our controller then we
+
+see that we have passed the status as
+
+400 so if we have a status code we are
+
+going to pass that status code but in
+
+case if we don't have it we are going to
+
+pass a status code of 500. all right I
+
+will save it and then what we can do is
+
+we can create the response dot Json we
+
+are going to intercept it and then in
+
+the response.json I can have the message
+
+and then I will have the error Dot
+
+message and along with this I can also
+
+pass the Stacked Rays so let's have the
+
+stack Trace I will change this to
+
+Capital and then I can have the error
+
+dot stack so this we get it on the error
+
+object and now if we go and try it then
+
+let's go to our okay I will close this I
+
+will close this as well I will close the
+
+environment file as well and now if we
+
+go and try and I will send it so in this
+
+case you will see that we get a error
+
+message in the form of a Json so we have
+
+the message all fills are mandatory and
+
+this is the stack Trace so now you can
+
+make a condition that you need to
+
+display the stack trace on the dev
+
+environment and or on the development
+
+environment and then on the production
+
+you don't want it so you can make this
+
+condition as well so now we are going
+
+going to use the stack Trace so you will
+
+see that it will also show us that in
+
+which file it has a problem and it will
+
+show all the Strays of our files now
+
+what I'm going to do is that if we go in
+
+our error Handler then in this case I
+
+need to pass some more information so I
+
+will also need to pass the title because
+
+I'm going to have the different kind of
+
+an error messages it may be 400 it may
+
+be 401 403 so so we need to handle each
+
+of the errors so what I will do is I'm
+
+going to have a title and in the title I
+
+will say that it's not found so I will
+
+have the not found all right I will save
+
+it and now what I will do is in case of
+
+a validation error we are going to pass
+
+the 400 so for that what I will do is
+
+I'm going to have here validation fail
+
+and then we are going to have the error
+
+message whatever error message we pass
+
+in our error object and then we have
+
+distract Trace so what I will do is I'm
+
+going to write a switch case here so let
+
+me have a switch statement and then in
+
+the key I will pass the status code so
+
+let's have the status code and now here
+
+if the status code is 400 then in that
+
+case what I need to pass is I need to
+
+pass that it's a validation field so I'm
+
+going to cut this and I'm going to add
+
+it all right I will save it and now if
+
+the status code is 404 not found then
+
+I'm going to have the case as 404 and
+
+then I'm going to pass this as my
+
+response so I'm going to cut it and I'm
+
+going to pass it here so what I will do
+
+is I'm going to create a constant file
+
+so that I can handle all my error codes
+
+so I'm going to create a new file and
+
+I'm going to have the constants dot JS
+
+and here what I will do is I'm going to
+
+have the
+
+exports.constant and this will be an
+
+object and here I will have my constants
+
+so I will have the not found which will
+
+be 4 not 4 then I'm going to have the
+
+validation error and that will be 400
+
+then I'm going to have the
+
+unauthorized that will be four zero one
+
+then I'm going to have the forbidden
+
+that will be 4 0 3 and then we are going
+
+to have the not found so I have
+
+different HTTP error methods for the
+
+client and now I can make use of this in
+
+our error Handler so what I will do is
+
+I'm going to import the constants first
+
+so let's go here and I'm going to have
+
+the constant and this constants will be
+
+coming from let's have the require and
+
+then I'm going to have the dot dot slash
+
+constants and here instead of 400 what I
+
+will do is I'm going to have the
+
+constants dot validation error here I'm
+
+going to change this to constants dot
+
+not found I'm going to copy this and I'm
+
+going to add the unauthorized as well as
+
+the Forbidden so here I'm going to have
+
+the unauthorized here I'm going to have
+
+the Forbidden and I'm also going to add
+
+the error 500 which is the server error
+
+so this will be the server error and
+
+this will be 500 all right I'll go back
+
+here and for the unauthorized what we
+
+are going to add is we are going to add
+
+the title as unauthorized so let's
+
+change this to unauthorized and then
+
+forbidden this will be forbidden and
+
+then let's add the last one which is the
+
+server error and now this is going to be
+
+the server error so let's have the
+
+server error and I'm going to change
+
+this to server error and in the default
+
+case I'm simply going to have a
+
+console.log so let's have a console log
+
+and I'm going to write here no error all
+
+good all right so now we have created
+
+our error handle middleware and now we
+
+can throw the error in our controller
+
+whenever it is required all right so now
+
+the next thing we need to do is now
+
+since we are going to use the mongodb
+
+and the Mongoose so whenever we interact
+
+with the mongodb we always get a promise
+
+so in order to resolve that promise what
+
+we will do is we are going to make use
+
+of an async await so let's have the
+
+async here I'm going to add the async on
+
+all the functions all right we have it
+
+async but now since whenever we use the
+
+AC thing and if we want to catch an
+
+error we need to make use of a try catch
+
+block and in order to do the try catch
+
+block we have to add the try catch Block
+
+in each of the functions but there is a
+
+better way to do this and that's where
+
+we can make use of a middleware which is
+
+an Express async Handler which is going
+
+to handle our exceptions inside the
+
+async express routes and then it's going
+
+to pass them to the express error
+
+Handler which we have created here so
+
+for that let's install the express async
+
+Handler so what I will do is I'm going
+
+to go here and here I'm going to do an
+
+npm install Express async Handler and
+
+this is going to install our Express
+
+async Handler now let's import that so
+
+what I will do is I'm going to have a
+
+constant I will have the async Handler
+
+so let's have the async Handler and this
+
+will be equals to the require and it
+
+will be coming from the express async
+
+Handler and now in order to use the
+
+async Handler what we have to do is we
+
+need to wrap this complete async into
+
+this async Handler function so I'm going
+
+to have the async Handler and then I'm
+
+going to wrap this all right I will save
+
+it now we don't have to write all the
+
+try catch blocked in order to catch the
+
+errors so async Handler will
+
+automatically whenever an exception is
+
+occurred it's going to pass it to the
+
+error Handler now what I will do is I'm
+
+going to add it in all the functions so
+
+let's add it here I'm going to add it
+
+here let's add it here and we can do
+
+similar on the other all right this is
+
+for the put and the last one is the
+
+delete so let's add for the delete all
+
+right so now we have added the async
+
+Handler on all the functions in our
+
+controller the next thing we need to do
+
+is we need to have the mongodb database
+
+setup so now let's do the mongodb setup
+
+and I will go to the browser all right
+
+and here we can type the mongodb so
+
+let's have the DB so this is the
+
+home page of the mongodb and then we
+
+need to create a account which is a free
+
+so I'm going to click on the sign in you
+
+can use your Google account or GitHub
+
+account or you can have your email
+
+address so I'm going to click on the
+
+Google and I'm going to use my Google
+
+account all right so this is going to
+
+take a while to sign in using the Google
+
+account all right I'm going to click on
+
+the accept and I'm going to click on
+
+submit all right now you can fill this
+
+information uh like what is your goal so
+
+I'm going to Simply have the learn
+
+mongodb or I can build a new application
+
+or let's have the explore what I can
+
+build then what type of application you
+
+are building we are building some
+
+application related to let's have a
+
+other and then we are going to build a
+
+my contacts all right and then what is
+
+the preferred language we are going to
+
+make use of a JavaScript then we are
+
+going to click on finish and then we can
+
+choose the free plan which is a shared
+
+so I'm going to click on create here and
+
+then here you can choose any of the
+
+cloud provider region so let's keep it
+
+as it is I'm going to choose the AWS I'm
+
+going to have the region as let's change
+
+the region to Frankfurt all right and
+
+then I'm going to have the cluster so we
+
+are going to keep as it is we are not
+
+going to change anything and it's free
+
+forever then we are going to have the
+
+additional settings we don't have to do
+
+anything here and in the cluster name we
+
+can give the cluster so I'm going to
+
+give the cluster as the page cluster all
+
+right I'm going to click on create
+
+cluster so now we have this uh now for
+
+the security quick start we are not
+
+going to make any use of a certificate
+
+in order to connect to our database so
+
+we are going to use the user name and
+
+the password so for the username and the
+
+password I'm going to provide admin
+
+admin make sure you provide the secured
+
+password so I'm going to click on the
+
+create user since my user is created and
+
+then what I will do is where would you
+
+like to connect from I would like to
+
+connect from my local environment and
+
+then here you can click on the add my
+
+current IP address that is going to
+
+whitelist your IP address to access the
+
+database and then you can click on
+
+finish and close so now you will see
+
+that we have the database deployments
+
+and it's going it's creating our cluster
+
+so it's going to take some time to
+
+create our cluster so let's wait for it
+
+so now you see that our cluster is ready
+
+and if we go and do the browse
+
+collections then right now we will not
+
+have any collection in our cluster so
+
+collections is kind of you can think as
+
+a database and inside the collections
+
+you can store the records in the form of
+
+a Json object now what I will do is I'm
+
+going to click on the add my own data
+
+and for the database I'm going to have
+
+the my contacts backend and for the
+
+collection we are going to have the
+
+collection of our contacts so let's have
+
+the contacts I'm going to click on the
+
+create and now you will see that we have
+
+the collection as contacts all right so
+
+now we have created database and we also
+
+have the contacts collection now if you
+
+want to connect our database what we can
+
+do is we can go to this and we have a
+
+different solutions here so we can use
+
+the compass shell or vs code plugin so I
+
+have a vs code plugin so if I click on
+
+it and then we can download the vs cloud
+
+plugin from here and then once you have
+
+it we can open it in your Visual Studio
+
+code so if I want to connect it what I
+
+will do is let's go to the overview and
+
+I will go to the connect and then here
+
+what I will do is uh we can click on the
+
+mongodb compass and here I can copy this
+
+all right I will copy this and now let's
+
+go to the visual studio code in the
+
+visual studio code if you have the
+
+plugin then you have this icon and then
+
+you can click on the add Connection in
+
+the add connection you connect with a
+
+connection string so I'm going to click
+
+here and then we can add the connection
+
+string here since our database name is
+
+my contacts backend and we have to
+
+change the password as well so I will
+
+change the password as admin and I will
+
+hit enter now you will see that the
+
+connected to the cluster we have it and
+
+now if I expand this then you will see
+
+that we have a data is which is in my
+
+context and we have the context So
+
+currently we don't have any documents in
+
+our context so we don't see it here so
+
+whenever we add the contacts in our
+
+database we are going to see it in our
+
+mongodb plugin as well so now we need to
+
+connect our application uh to the
+
+mongodb database so now let's go back to
+
+our browser and here what we will do is
+
+I'm going to click on the connect and
+
+this time I'm going to connect with the
+
+mongodb native driver so this is what we
+
+are going to use so I'm going to copy
+
+this and then I will go to the visual
+
+studio code let's go to the application
+
+and then here what we will do is I'm
+
+going to close all this error hander I'm
+
+going to close the contacts and here I'm
+
+going to create the environment variable
+
+and let's add it here so I'm going to
+
+add this here now I'm going to name it
+
+as the connection string so let me have
+
+the connection string and my connection
+
+string is this one I'm going to change
+
+this to admin and then here I'm going to
+
+add my database name so my database name
+
+was my contacts hyphen backend so oops I
+
+made a mistake so this will be before
+
+the question I will save it so now what
+
+we are going to do is uh let's create a
+
+new folder and I'm going to name it as
+
+the config so I'll come here I'm going
+
+to create the new folder I will change
+
+this to config so let's have the config
+
+and now in order to connect with our
+
+mongodb database we will need a mongoose
+
+which is a object model design schema
+
+for our entities like contacts or user
+
+and it's help us to communicate with the
+
+mongodb database so for that what I will
+
+do is I'm going to create a new file and
+
+I will name it as DB connection dot JS
+
+now let's go and install Mongoose so I'm
+
+going to have the npm install Mongoose
+
+so this is going to install Mongoose to
+
+our application we can verify it with
+
+the packet Json and we see that we have
+
+the Mongoose here I'm going to import
+
+the rules so let me have the
+
+Mongoose this will be equals to the
+
+require I will have the Mongoose here
+
+and then what I will do is I'm going to
+
+create a function which will be the
+
+connect DB I'm going to have an arrow
+
+function and then inside that what I
+
+will do is and this is going to be an
+
+async function so let's add a async and
+
+then I'm going to have a try and then
+
+let's have a catch block that will catch
+
+the error and if there is an error we
+
+will log the error so let's lock the
+
+error and then if there is an error I
+
+just want to exit so I will have the
+
+process exit and I'm going to pass one I
+
+will also export this connection DB so
+
+what will I will do is I'm going to have
+
+the module dot exports and this will be
+
+equals to the connection DB and what we
+
+are going to do in a try block is we are
+
+going to create a constant connect and
+
+that will be an await uh oops a weight
+
+we will have the Mongoose dot we have a
+
+method which is a connect and then we
+
+are going to pass our connection string
+
+so that will be the process dot EnV dot
+
+connection string so I'm going to copy
+
+this connection string and I will add
+
+the connection string here I will save
+
+it and then when we have this connection
+
+established let's have a console log so
+
+that we know that the connection to the
+
+database is established so I'm going to
+
+have the database connected and then I'm
+
+going to add some parameters here so
+
+which will be the connect dot connection
+
+dot host so if you are going to console
+
+log this connect then you will see that
+
+you have some properties on this connect
+
+and then you can add those here so I'm
+
+going to have this and I will also have
+
+the database name so I will have the
+
+comma and then I'm going to change this
+
+to name I will save it and now you will
+
+see that if I save it then we don't see
+
+anything because we haven't used the
+
+connect DB uh function at the moment so
+
+let's go to our server so I'm going to
+
+go to my server and inside the server
+
+what I will do is I'm going to call this
+
+connect DB so this is my connect DB and
+
+I'm going to call it I will save it and
+
+now you will see that as soon as I save
+
+it or you will see here that we have in
+
+the console log database connected and
+
+this is the database that we are
+
+connecting and this is the host actually
+
+that we are connecting and this is my
+
+database name so we have successfully
+
+established the connection and the next
+
+thing we are going to do is we are going
+
+to create the schema for our contacts so
+
+now let's create the schema model for
+
+our contacts so what I will do is I'm
+
+going to create a new folder and I'm
+
+going to name it as models and inside
+
+the models I will create a contact model
+
+so let's go here and create a new file
+
+and I'm going to have the contact model
+
+dot JS now we have the contact model now
+
+let's import the Mongoose so we are
+
+going to have the Mongoose require oops
+
+require mongos and then we are going to
+
+create a constant and we will have the
+
+contact tax schema so this schema will
+
+actually have all the values that we
+
+want in our contact resource so I will
+
+have the contact this will have the
+
+Mongoose dot schema now we have an
+
+object inside that and inside that
+
+object what we will do is we are going
+
+to have the fields that we want in our
+
+contact object so first thing will be
+
+the name all right and the type will be
+
+a string so let's have a type and I will
+
+change this to string then I will also
+
+have a required so let's have the
+
+required because we need this and then
+
+we will change the flag as true and we
+
+will also pass in case of an error
+
+please add the contact name all right I
+
+will save it now the other field we want
+
+is the email address so let's have the
+
+email address and I'm just going to do a
+
+copy paste and I'm going to have the
+
+contact email address and the other fill
+
+will be the phone number so let's have
+
+the phone here and then it will also be
+
+a string please add the contact phone
+
+number so I'm going to change this to
+
+phone number I will save it and then we
+
+can also have the timestamp so what I
+
+will do is I'm going to add the
+
+timestamp here I will have the time tabs
+
+and then I will have it true and now
+
+what we need to do is we just need to do
+
+an export so I will have the modules dot
+
+export we're going to have the Mongoose
+
+dot model and then we can provide the
+
+name to this model so let's have the
+
+name as contact and we can have the
+
+contact schema so I'm going to copy and
+
+I'm going to add it all right I will
+
+save it okay so now we have created the
+
+Mongoose object so now the next thing we
+
+will do is we are going to apply our
+
+current operations and let's let's store
+
+the data in the real database so I'm
+
+going to go to my contacts so now let's
+
+start with the get contacts so first we
+
+have to import the model so I will have
+
+the contact and this will will be equals
+
+to the require I will have the codes dot
+
+dot slash I will have the models and
+
+inside the models we will have the
+
+contact model now we have the contact
+
+model and now what we will do is I'm
+
+going to have the constant contacts and
+
+this contacts will be equals to the
+
+contact model Dot and it exposes some
+
+methods to us so that we can establish a
+
+communication with the database so what
+
+I will do is I'm going to have the find
+
+and then after that what we can do is we
+
+can copy this context and then we can
+
+pass this contacts as the Json now let's
+
+give a try so I'm going to close this
+
+and let's close this as well we don't
+
+want this as well and if we go back here
+
+if I go to the get and if I send a
+
+request so we see that the request is
+
+still processing so let's cancel this
+
+and let's go back and we see that we
+
+have the contacts and we are using the
+
+async but we haven't used the await here
+
+so let's use the update now let's go
+
+back and let's give a try and then you
+
+will see that we have an empty array so
+
+right now we don't have any contacts in
+
+our database so now let's go and create
+
+a new contact so what I will do is here
+
+we have the async Handler we have the
+
+request body is a request dot body or we
+
+are going to go here and let's have a
+
+post and let's add the body here so I'm
+
+going to have the name as the page let's
+
+have the email address so the email
+
+address will be in the page at the rate
+
+gmail.com and then let's add the phone
+
+so let me add the phone and the phone
+
+will be let's add some random and now if
+
+we go back to our controller then in the
+
+case if we want to create a new contact
+
+so we will see that first we will have a
+
+check if the name email and the phone is
+
+empty then we throw an error but if they
+
+are not empty then what I will do is I'm
+
+going to create a contact object then I
+
+I'm going to create but if they are not
+
+empty then I'm going to create a
+
+constant with a contact and then I'm
+
+going to create a contact so let's have
+
+the update and then I'm going to have
+
+the contact model dot create and then
+
+I'm going to pass the object in the
+
+object I'm going to pass the name and
+
+this name will be equals to the request
+
+dot body dot name but I have already
+
+restructured it and since in the es6 if
+
+the key and the value are same we can
+
+just use the key then we are going to
+
+have the email and then we are going to
+
+have the phone I will save it and then
+
+once it is created then in that case
+
+what we can do is we can throw we can
+
+have the response dot status201 Json and
+
+then we are going to pass the contact
+
+that we have created so let's pass the
+
+contact I will save it now let's go to
+
+the new request and now let's fire the
+
+request I will send it and then you will
+
+see that we have created a new contact
+
+name is the page email phone number we
+
+we have the ID which is auto generated
+
+from the mongodb and then we have the
+
+created ad and the updated at the
+
+timestamps now if we go here and if we
+
+want to check then we see that we have
+
+the contacts and in the context you see
+
+that we have a record and this is the
+
+record that is stored in our collection
+
+now let's go back to our code I will
+
+close this let's minimize this and now
+
+let's work on the get contact so if we
+
+want to get an individual contact then
+
+we can just use the find by ID so let's
+
+go here and what I will do is I'm going
+
+to have a constant contact and this will
+
+be equals to the await let's have the
+
+contact model dot find by ID and we can
+
+pass the ID with the request dot param
+
+dot ID if we don't find any of the
+
+contact then we are going to throw an
+
+error that a contact is not found so
+
+what I will do is I'm going to have if
+
+we have the contact then in that case
+
+what we we want is we want the response
+
+dot status would be four not four not
+
+found and then we will have to throw an
+
+error so let's throw an error with new
+
+error and then we are going to have the
+
+contact not found but if we find the
+
+contact then we are going to return the
+
+contact so let me have the contact I
+
+will save it all right so now let's go
+
+and let's give a try so if I go back
+
+here I will fetch all the contacts and
+
+then I want to get this individual
+
+contact so I will get the ID I'm going
+
+to copy this and I'm going to pass the
+
+ID here and then I'm going to send the
+
+request now you will see that I get an
+
+individual object with the ID now let's
+
+make a change here I'm going to change
+
+it to 9 and then I'm going to send it so
+
+in this case you will see that not found
+
+contact not found we don't have any
+
+contact associated with this ID so now
+
+let's do the next one which is the
+
+update contact so in order to update a
+
+contact first we need to fetch a contact
+
+so I'm going to copy this as it is and
+
+then if we find the contact attack then
+
+I'm going to have the updated context so
+
+I'm going to have the constant updated
+
+contact and this updated contact will be
+
+having a a weight so I can have the
+
+contact model dot then I will have the
+
+find by ID and update and inside this
+
+what I have to pass is I want to pass
+
+the ID which I want to update so I will
+
+have the request.param dot ID the next
+
+will be the new body which I want to
+
+update which is the request dot body and
+
+then I also need to pass the and then I
+
+need to pass a query option uh which
+
+will be the new and I'm going to have it
+
+as true I will save it and then once we
+
+get it then what we are going to do is
+
+we are going to have a response dot
+
+status and then we can actually pass the
+
+updated contact to the user so I'm going
+
+to have the updated contact all right I
+
+will just copy this so now we have the
+
+updated contact let's go and let's give
+
+a try so this was my contact so if I
+
+click click I will get the contact uh
+
+sorry the contact is not found so I will
+
+change back the ID which was eight and
+
+we have the contact now I want to update
+
+this contact with the new information so
+
+I will have the page malvia and I will
+
+also have my email as the page dot
+
+malvia oops so the page dot file via I
+
+will make a put request and let's click
+
+on send and you will see that as soon as
+
+I send it the record is updated with the
+
+page malvia and now let's go and let's
+
+get the record so we will get the new
+
+updated record and the last one is we
+
+need to do is the delete in our current
+
+operation so let's go and let's do a
+
+delete so for delete also first we need
+
+to fetch the contact which is available
+
+in the database so let's go and let's
+
+copy that all right we have the contact
+
+if we don't find the contact we throw
+
+that contact not found and if the
+
+contact is available then in that case
+
+we will just do a remove so what I will
+
+do is I'm going to have the await
+
+contact dot remove so we have the remove
+
+all right I will remove the contact and
+
+then I will just pass the contact which
+
+we have remote so I'm gonna go and
+
+change this to here I will save it now
+
+let's go and let's try so I'm going to
+
+click we get the contact now I'm going
+
+to delete this contact so let's go and
+
+let's delete it I'm going to click on
+
+delete and you will see that it's 200
+
+okay that means the contact is deleted
+
+and now if I try to fetch this contact
+
+then I should not be able to get it I
+
+will should get that contact not found
+
+and you will see that we have the
+
+contact not found so now we have done
+
+the crud operations we have done the
+
+read write delete and update and we have
+
+also done the connection with the
+
+database and all the contacts are stored
+
+in the data page in the form of
+
+documents under the collections so now
+
+the next thing what we have to do is now
+
+we need to introduce the authentication
+
+so now let's start with the
+
+authentication uh module and in the
+
+authentication what we will do is we are
+
+going to provide some endpoints which
+
+will help us a user to register
+
+themselves and then login and once they
+
+log in they can use a access token and
+
+then with the help of the access token
+
+they can manage their contacts so now
+
+let's start with the routing first so
+
+what I will do is I'm going to go to my
+
+server.js and inside the server.js I'm
+
+going to copy this and then I'm going to
+
+add here and this time our API URL will
+
+be the users as we are going to register
+
+the user and then we are going to have a
+
+login user so what I'm going to do is
+
+I'm going to change this to the user
+
+routes so let's have the user routes and
+
+now let's go and create the user routes
+
+file so I will go to my routes and
+
+inside the routes I'm going to create a
+
+new file which will be the user routes
+
+dot JS so now in the user route.js let's
+
+first import the express so I'm going to
+
+have the constant I will have the
+
+express and this will be equals to the
+
+require and I will have the express and
+
+then I'm going to have the router so
+
+let's have the router and this router
+
+will be coming from the Express dot
+
+router method so I'm going to call the
+
+router method now let's create the route
+
+so what I will have is I'm going to have
+
+the router dot post and on this post I
+
+will have the register and when we have
+
+the register we are going to have the
+
+request response and then we can have
+
+the response dot Json and this
+
+responsecon B I will have the message
+
+and I will have the register the user
+
+and then we can have a login endpoint so
+
+that will help our users to log in so
+
+I'm going to have the login and I will
+
+also create one more endpoint that will
+
+give the information of the current user
+
+so let's have a slash current all right
+
+I'm going to change this to login user
+
+so let me have the login user and I will
+
+change this to current user information
+
+so let's have the current user
+
+information and now let's give a try so
+
+I will go back here here and here
+
+instead of this I'm going to have the
+
+users slash register and I'm going to
+
+send so I see that we get an error so it
+
+should be a post request so now let's
+
+send it and we still see an error so
+
+probably let's see that our application
+
+is running or not so I'm going to open
+
+the terminal and here what we see is
+
+that we have an error and the error is
+
+expressed dot router is not a function
+
+all right so we made a mistake now let's
+
+go to the user route and this should be
+
+capital r now I will save it and we
+
+still have an error now let's go and fix
+
+that in the server.js on line number 13
+
+we have an error so I will go to the
+
+server.js and online number 13 we have
+
+an error that there is no user route so
+
+we need to export the user route so
+
+let's go here and let's have the module
+
+dot export and I'm going to export the
+
+router all right so that it is now
+
+available in my server.js now everything
+
+works fine let's go and let's check so
+
+if I I go to this URL or API uses
+
+register and if I make a send then we
+
+see that we have registered the user
+
+similarly let's go and check for the
+
+login and I see that we have the login
+
+and then let's have the current user so
+
+if I click then we see the current user
+
+but since the current user should be a
+
+get request and not post so let's go and
+
+let's make this change so it should be a
+
+get request all right so now the next
+
+thing we will do is we are going to
+
+create the controller for the users so
+
+let's go to the controller and let's
+
+create the usercontroller.js so I will
+
+go here I will have the user controller
+
+dot JS and then in the usercontroller.js
+
+what we can do is we can just do simply
+
+a copy paste of this and I'm going to
+
+have hit here and the first thing we are
+
+going to have is to register a user so
+
+let's have a register a user and we are
+
+going to have a post method this will be
+
+users slash register and this will be a
+
+public access so anyone can access the
+
+end point and then register the user we
+
+will change this to register user whoops
+
+so this will become registered user and
+
+inside this this one we can now remove
+
+this and we can go to the user route and
+
+we can cut this and we can add that in
+
+the controller so let's go here and
+
+let's add in the controller I will save
+
+it and now let's go and Export it so I
+
+will have the module dot export and then
+
+we will export the registered user so
+
+I'm going to copy and I'm going to add
+
+it here now we will also need to import
+
+it in the user routes so we can import
+
+it so let's have the register user and
+
+you will see that it gets Auto imported
+
+so now we have to create the login user
+
+as well so let's go to our controller
+
+back and I'm going to copy this I will
+
+add it here and I will change this to
+
+login user so this will be login user I
+
+will have the login user this will be a
+
+post API and the endpoint will be the
+
+login it will also be a public endpoint
+
+and then we can change this so let's go
+
+here and I'm going to cut this and let's
+
+add that in our controller so I'm going
+
+to go here and I'm going to add it here
+
+and I'm going to export the login user
+
+as well now the third one is the current
+
+info of the user so what we will do is
+
+let's create one more method all right
+
+and this time this method will be a
+
+private method so only a logged in user
+
+can get the current information of a
+
+user so now this will change to the
+
+current user info the endpoint will now
+
+change to current it will be a private
+
+and here I'm going to have the current
+
+user let's cut this so I'm going to cut
+
+this and I will add it here so let me
+
+add that here and I'll save it we are
+
+going to now export the current user so
+
+let's add the current user and let's
+
+import the current user here so I'm
+
+going to import the current user and I
+
+will also import the login user now
+
+let's copy the login user and provide
+
+the login user function here and for the
+
+current user I'm going to provide the
+
+current user here I will save it and we
+
+see that we get an error so let's go and
+
+see what the error is so in the user
+
+controller line number four so let's go
+
+to the user controller and on line
+
+number four uh we see that I don't see
+
+any error but what is the error it says
+
+a sync Handler is not defined and we
+
+need to import the async Handler so what
+
+we will do is I'm going to have the
+
+constant async Handler and this will be
+
+equals to the require and I will have
+
+the express async Handler all right I
+
+will save it so now everything should
+
+work fine we see that now we don't see
+
+the error and what I will do is I'm
+
+going to close this contact controller
+
+and also close the contact model and now
+
+let's give a try so if I run it then
+
+we'll still see that we get the correct
+
+response register the user so now we
+
+have created it now the next thing what
+
+we have to do is we need to make the
+
+functionality for register the user and
+
+for that first we have to create the
+
+user model so let's go and create the
+
+user model so I'm going to go here and
+
+I'm going to create a new file and let's
+
+name it as the user model dot JS and in
+
+the usermodel.js let's import the
+
+Mongoose this will be equals to the
+
+require and I'm going to add the
+
+Mongoose here then I'm going to create a
+
+constant with user schema and this will
+
+be equals to the Mongoose dot schema and
+
+this will be an object and what values
+
+we will need in order to register a user
+
+the first property I need is the
+
+username so let's have the username and
+
+this username will be of type ring so I
+
+will have the username of type string
+
+then I will have the I misspelled it
+
+type then I will have the required and
+
+yes this fill is required so I'm going
+
+to have it as true and I will have a
+
+message as please add the user name the
+
+second field is we need to have an email
+
+address of the user to register the user
+
+so for that I will have a type as string
+
+and then I will have the required field
+
+so let me have the required and the
+
+required will have the flag as true and
+
+then the message is please add the user
+
+email address I'm also going to add one
+
+more property which is the unique so
+
+that I need a unique email address every
+
+time when a user is registered so no
+
+duplicate user with the same email ID
+
+can register themselves so I will add a
+
+property called unique I will have the
+
+flag as true and then whenever someone
+
+tried to register themselves with the
+
+same email address what I will have a
+
+message that email address already taken
+
+so that we can prevent them to register
+
+twice with the same email address and we
+
+will also need the password so let's
+
+have the password fill I will have the
+
+type as string all right then I will
+
+have the required fill so let's have the
+
+required and it will have a flag as true
+
+and I will have the please add the user
+
+password all right I will save it and I
+
+will just change this to small L and
+
+then we will also need the timestamp so
+
+let's add the timestamp so I'm going to
+
+have the time stamps and I will have it
+
+as true and then what we can do is now
+
+we can use the module export and we can
+
+export the schema so I will have the
+
+module exports and this will be equals
+
+to the Mongoose dot model and let's name
+
+the model as user so I will have the
+
+user and then I can have the user schema
+
+so now we have created the model as well
+
+the next thing what we can do is now
+
+let's write the functionality in order
+
+to register a user so I will go to my
+
+controller and whenever a user wants to
+
+register themselves they need to provide
+
+the username email address and the
+
+password in the request body so what we
+
+are going to do is uh let's restructure
+
+those information so what I will do I
+
+will have a constant I will have the
+
+username the email address and the
+
+password of the user and all these three
+
+fills we will get it from the request
+
+dot body and once we have it we are
+
+going to make a check that if the
+
+username is not empty or the email is
+
+not empty or the password is not empty
+
+so I will have it and in that case what
+
+we will do is we are going to send a
+
+response status as 400 so the validation
+
+is failed and we will send a we will
+
+throw an error actually so I will have
+
+the throw new error so we will have an
+
+error object and then we will have all
+
+fields are mandatory so before creating
+
+a user what we will see is we are first
+
+going to check that whether with the
+
+particular email address do we already
+
+have an existing user in our database or
+
+not so what I will do is I'm going to
+
+have a constant user available and then
+
+I can and make use of an await keyword
+
+and then we can use the user model in
+
+order to interact with our mongodb
+
+database so let's import the user model
+
+first so I will have the constant user
+
+and this will be equals to the require
+
+then I'm going to have the dot dot slash
+
+models slash user model and we can now
+
+have the update we can use the user
+
+model and then we can do a find one and
+
+this is going to help us to find a user
+
+which is already have in our database
+
+with the email address so let's use this
+
+email address and check so I'm going to
+
+add it here and now if we have the email
+
+address so we need to pass the email
+
+address in an object so let me have an
+
+email address as an object and now if we
+
+find this user available so let's go
+
+here and let's have a check on that so
+
+if we have a user then in that case we
+
+are going to throw an error which will
+
+again be a validation error and we will
+
+have a status as 400 and this time the
+
+message will be that user already
+
+registered and then what we will do is
+
+if we don't find any user then in that
+
+case we are going to create a new user
+
+in our database so before creating a new
+
+user what we have to do is we are
+
+accepting the username email address and
+
+the password from the client but since
+
+the password is a raw password and we
+
+cannot store the raw password into our
+
+database so for that we need to Hash our
+
+password and in order to Hash the
+
+password we are going to make use of a
+
+library called Big Crypt so let's import
+
+the bcrypt library so if we go to the
+
+packet Json we see that we don't have a
+
+bcrip library so I'm going to open a new
+
+terminal and then I'm going to install
+
+the B Crypt so let me have the npm
+
+install Big Crypt and I will hit enter
+
+so now we have the bcrip library and now
+
+let's go and use that so what I will do
+
+is I'm going to import the bcrypt so let
+
+me have a constant Big Crypt this will
+
+be equals to Rick require and then I
+
+will have the big trip and you will find
+
+this bcrypt documentation on the npm
+
+official documentation but I'll show you
+
+how we can use it so it's very simple to
+
+use it and what we have to do first is
+
+we need to create the hash password so I
+
+will have the hash password and how we
+
+are going to create is I'm going to
+
+create a constant with an hashed
+
+password and this will be equals to so
+
+bcrip is also going to provide us a
+
+promise so that's why we are going to
+
+use an addressing a weight and I will
+
+have the bcrypt dot hash and then in
+
+this we first need to pass the raw
+
+password so our raw password is
+
+available in the password and then we
+
+can provide the solved rounds so this 10
+
+is just the number of solved rounds that
+
+we want for the hashing of the password
+
+so you can use this and now if we do a
+
+console.log then we will be able to see
+
+the hashed password so let me have the
+
+hashed password all right and then I'm
+
+going to use the hash password I will
+
+save it and then what we are going to do
+
+is uh let's go and check first so if I
+
+go back here and we have the post
+
+register and in order to register a user
+
+what I will have is I will have the user
+
+name okay and let's have the username as
+
+the malvia then I will have the email
+
+address and we don't need a phone we
+
+will have a password and I'm going to
+
+give the password as one two three four
+
+five six now I'm going to click on send
+
+so we can see the logs and when I click
+
+on send you will see that we have the
+
+hashed password so this is the hash
+
+password we are going to store in the
+
+database so that we can prevent or we
+
+can have the security of the user
+
+password so now let's go back to the
+
+user controller and now we already have
+
+the hashed password and what we will do
+
+is now we can create a new user so I
+
+want to create a new user so let's have
+
+a constant of the user I will have the
+
+user model and that will give me an
+
+Access to create and whenever I want to
+
+create a user what I will have is I'm
+
+going to have the username I will have
+
+the email and then I'm going to have the
+
+password so let's have the password and
+
+the value of the password will not be
+
+password we are going to use the hashed
+
+password I will save it and then what we
+
+can see is uh once a user is created so
+
+I will do a console log of the user so
+
+that we know that a user is created
+
+successfully so I will have the user
+
+created I'm going to have the dollar
+
+user and now we need to send the
+
+information to the user so whenever we
+
+need to send the information to the user
+
+I don't want to send the complete user
+
+because this will also contain my hash
+
+password so what I will do is now if we
+
+have a successful user created then in
+
+that case I want to have the response
+
+dot status as201 that is the resources
+
+created and then I'm going to pass the
+
+Json data and I want to pass the ID so I
+
+will have the user dot ID and then I
+
+will also pass the user email address so
+
+let me have the email address and this
+
+will be the user dot email address and
+
+if there is a problem then in that case
+
+what we will do is I'm going to throw an
+
+error so I will have here and I will
+
+have the response dot status as 400 all
+
+right and then let's throw an error so I
+
+will have the new error object and I
+
+will say that user data is not valid so
+
+that means the request was not valid so
+
+that's why we were not able to create
+
+the new user all right so now we have
+
+done this uh if we want to test it what
+
+we can do is we can go to our new
+
+request and here we can try to test it
+
+so I can go and send a request and you
+
+will see that when I send a request I
+
+get a response back as status 201
+
+created so my resource which is a
+
+particular user is already created in
+
+the database and in response to that I
+
+get the ID of my user which is created
+
+and then the email address now if I try
+
+to submit it once again then and in that
+
+case we are going to get an error and
+
+that is because the user already
+
+registered and we have made a check here
+
+so if you will see that if we have a
+
+user and if we find it one in with the
+
+help of the email address we throw an
+
+error that the user is already
+
+registered and now if we want to verify
+
+that in our database then we can go to
+
+our mongodb so let me go to the mongodb
+
+and this is our collection and inside
+
+the users if we go and then we will see
+
+that this is the user we just have
+
+created so this is what uh we have now
+
+the register user we now need to create
+
+an endpoint for the login so that
+
+whenever a user is login we get an
+
+access token and for that we are going
+
+to make use of a Json web token so let's
+
+go back in our Visual Studio code and
+
+here what we will do is before using the
+
+Json web token I want to go to the Json
+
+web token website and I want to show you
+
+something so I will go to the Json web
+
+token.io and then what we will do is uh
+
+whenever we have a Json web token so
+
+this is sample Json web token and you
+
+will see that it contains three parts
+
+the first part is actually the header
+
+algorithm of the token so it's have a
+
+algo type of hs256 and it's a type of
+
+web token now the next piece of
+
+information which is in the pink color
+
+uh that is actually the payload and that
+
+payload we are going to have the user
+
+information that we are going to add in
+
+our token so and the third part you will
+
+see it's the signature verification so
+
+this is how a Json web token is and it
+
+consists of three different parts now
+
+let's go and let's add it in our
+
+application so what I will do is let's
+
+go and first install the Json web token
+
+so I'm going to have the npm install
+
+Json web token now if we go to the
+
+package Json we should be able to see
+
+the Json web token all right so now
+
+let's work on the login functionality or
+
+the login endpoint so if we go to the
+
+user controller and in the login
+
+endpoint what we want is whenever a
+
+client is sending the email address and
+
+the password in that case we need to
+
+match the password and then we provide
+
+the user back with a access token so
+
+what I will do is I'm going to have a
+
+constant and then I'm going to have the
+
+JWT and then I will have the require and
+
+this will have the Json web token and
+
+then I'm going to go to my login
+
+function so this is the login user
+
+function and whenever a user is trying
+
+to log in they send in the request body
+
+the email address and the password so
+
+let's fetch the email address and the
+
+password first so what I will do is I'm
+
+going to have a constant I will have the
+
+email and then I will have the password
+
+then this will be equals to the request
+
+dot body and then we will just make a
+
+check that if we don't have an email or
+
+we don't have a password I misspelled
+
+the password then in that case we need
+
+to the response status as 400 there is a
+
+validation failure and then let's draw
+
+row and error so I will have the new
+
+error and then we will have all fields
+
+are mandatory but if we have a proper
+
+email address and the password then in
+
+that case first we need to find that
+
+whether there is a user in the database
+
+or not so what I will do is I'm going to
+
+have a constant user and then I will
+
+have the update we are going to use the
+
+user model and then we will use the find
+
+one then we are going to pass an email
+
+address and this will help us to
+
+identify that a user is already present
+
+in the database uh or not once we have
+
+the user then we need to compare the
+
+password which is stored in our database
+
+and the password which we have received
+
+from the client so what we will do is uh
+
+let's have the compare password with
+
+hashed password and what we can do is uh
+
+it's very easy to compare first we need
+
+a user and along with that we will also
+
+make a check on the password so in order
+
+to do that we can use the B3 script
+
+method which is a compare so let's use
+
+that bcrypt dot compare and then we are
+
+comparing the password which we received
+
+from the client in the request body with
+
+the hashed password so that will be the
+
+user dot password and this user is the
+
+user that we are stored in our database
+
+and which we are retrieving here we have
+
+the user we can now compare the password
+
+with the user dot password and if this
+
+matches in that case what we need to do
+
+is we need to provide an access token in
+
+the response so what we will do is uh we
+
+are going to have a response dot status
+
+and the status will be 200 and then we
+
+are going to have a Json and in the Json
+
+we are going to pass the access token so
+
+let's have the access token now we need
+
+to know what is this access token is now
+
+this is where we are going to use the
+
+Json web token so now let's have and
+
+create this access token so what we will
+
+do is let's create a constant with an
+
+access token and then we can use the JWT
+
+which we have imported here JWT and it
+
+has a method of signing we need to sign
+
+a new token for our user so what I will
+
+do is I'm going to have the JWT DOT sign
+
+in and this JWT DOT sign in is going to
+
+take few parameters so it will be an
+
+object and we need to provide the
+
+payload so if we go back to our browser
+
+then you will see that we have a payload
+
+and inside this payload we can actually
+
+pass the information which we want in
+
+our token so let's go back and here what
+
+I want is my payload will be the user
+
+information which I want to embed but I
+
+don't want to embed the user password so
+
+what I will do is I will have a user
+
+object as my payload and then I will
+
+embed the username so this username will
+
+be equals to the user dot username I
+
+will also have the email address which
+
+will be equals to the user Dot email and
+
+then I'm going to have the ID which will
+
+be equals to the user dot ID so this is
+
+my payload which I'm going to embed in
+
+my token now the next thing is uh we
+
+have to provide an access token secret
+
+so in order to get the access token
+
+secret what we can do is we can just
+
+Define a unique access token Secret in
+
+our environment variable file so let's
+
+go to the environment variable file and
+
+here what I will do is I can simply have
+
+the access token so I will have the
+
+access token secret and then you can
+
+define a unique secret key value here so
+
+for now what I will do is I'm going to
+
+Simply add the the page one two three as
+
+the secret but you should not do it when
+
+you do a production level code so what
+
+we'll do is I'm going to go to the user
+
+controller and here I can use the access
+
+token secret so in order to fetch a
+
+value from the environment variable we
+
+can make use of a process code module
+
+and then we are going to have an EnV we
+
+will have the access token secret so I'm
+
+going to just copy this all right let's
+
+add it here okay so now we have that and
+
+there is one more property which we need
+
+to pass and that is the expiration time
+
+of our token so we are generating a
+
+token but we need to also provide the
+
+expiration date of that token so that
+
+after this token is expired users should
+
+not be able to use the token in order to
+
+call the apis so what we will do is we
+
+are going to set the expiry time and
+
+let's set the expiry time as one minute
+
+so this is just for the testing purpose
+
+we are going to set the expiration time
+
+as one minute and once we have this we
+
+have the access token and let's pass the
+
+access token as a response and if there
+
+is a error then we will have an else and
+
+what we will do is we will have the
+
+response dot status of 401 and that will
+
+be uh that email or the password is not
+
+valid so the thing is that if this is
+
+not true that means we don't find a user
+
+or we don't match the user provided
+
+password with the stored password then
+
+in that case there is a problem with the
+
+credentials and we are going to pass 401
+
+and let's throw an error so I'm going to
+
+throw in an error so let's have an error
+
+object and then I will have a message as
+
+email or password oops I made a mistake
+
+password is not valid all right I will
+
+save it and now I can just remove this
+
+so I'm going to remove this and I will
+
+save it now let's give a try so what we
+
+will do is uh I will go in the new
+
+request and here instead of the register
+
+I will have the login and I'm just going
+
+to remove this username and now let's
+
+send the request so if I click on the
+
+send then you will see that we have the
+
+access token so now we are able to get
+
+the access token now what we can do is
+
+uh we can use this access token and can
+
+access all our private routes if we go
+
+to the uh contact controller then you
+
+see that we have all the public routes
+
+and now we are going to make this as a
+
+private route so the next thing what we
+
+are going to do is uh we are going to
+
+make all our public routes as a private
+
+routes and we are going to enforce a
+
+validation on those public routes so
+
+only authenticated user can access those
+
+private routes so what we will do is
+
+first let's start with the user
+
+controller and in the user controller we
+
+will first go with the current user info
+
+now to access this endpoint the current
+
+user info we need an access token I mean
+
+the client has to pass an access token
+
+so that only authenticated user will be
+
+able to access this route so what we
+
+will do is let's go to the user routes
+
+and in the user routes what we have to
+
+do is but before we do anything in the
+
+user routes we need to make a middleware
+
+which is going to help us to validate
+
+the token which a client is sending in
+
+our request as a bearer token so what we
+
+will do is I will go here and I'm going
+
+to change this to current and then what
+
+a client will do I mean the user is
+
+going to have this token and they are
+
+going to pass the token in the bearer
+
+section and I will send it here and then
+
+when a user sent the request I have to
+
+validate this token I have to verify
+
+that the token is a correct token and it
+
+is associated with a correct user so for
+
+that what we will do is we are going to
+
+create a middleware so that where we can
+
+verify the token so I'm going to create
+
+a new file and then I will have the
+
+validate
+
+tokenhandler.js and in this what we will
+
+do is first let's import the async
+
+Handler so I will have the async Handler
+
+and this will be required I will have
+
+the express async Handler and then the
+
+next thing is we will also need the JWT
+
+Json web token so let's import that and
+
+I will have the require and then I will
+
+have the Json web token I'm going to
+
+create a constant validate token
+
+function so I will have the async
+
+Handler and inside the async Handler
+
+what I will do is I'm going to have the
+
+async and we are going to have the
+
+request response and then we will have
+
+the next so this is a middleware and you
+
+will see that we have a very similar
+
+middleware as error Handler also and in
+
+the error Handler also we have the
+
+request response and the next and we
+
+also have the error now what I will do
+
+is I'm going to create a token variable
+
+here and then what we will do is
+
+whenever a user is sending a request the
+
+token is actually passed in the header
+
+section with the auth field so either
+
+you can pass it here as a bearer token
+
+or you can have an authorization field
+
+here so you can also create a new value
+
+which will be an authorization and then
+
+in the value what you can do is you can
+
+use the bearer and then you can add the
+
+token here so either you do this way or
+
+you will pass it here in both the cases
+
+we should be able to manage to have a
+
+check on our backend so what I will do
+
+is is a let auth header and this will be
+
+equals to the request dot headers dot
+
+authorization so if we have this kind of
+
+an authorization so I will copy and I
+
+will add it here or if a user is having
+
+an authorization uh like this so I'm
+
+going to copy and then if a user have an
+
+authorization like this so in both the
+
+cases we will have the auth header and
+
+now what we'll do is that if we have
+
+this auth header then in that case we
+
+will also make a check that we have an
+
+auth header that starts from so I will
+
+have the starts with and our
+
+authorization header always starts with
+
+a bearer so we need to have the auth in
+
+a bearer token so what we will do is we
+
+are going to go and check for the bearer
+
+keywords so if we have Bearer then in
+
+those cases what we need to do is let's
+
+extract the token first so we are going
+
+to have the token variable and we need
+
+to extract from the auth header so what
+
+I will do is I'm going going to make use
+
+of a split and then I will split with a
+
+space bar so if we go here and you will
+
+see that we have a bearer and then we
+
+have a space so let's split it with the
+
+space bar and then we are going to use
+
+the value of the first index so if we go
+
+here the first the zeroth index will
+
+contain the bearer and the first index
+
+will contain the token so that's where
+
+we use the first index we have the token
+
+and now what we need to do is we need to
+
+verify this token so to verify we will
+
+use the JWT dot verify and then we need
+
+to pass the token we also need to pass
+
+the access key so process dot EnV dot
+
+access token key so I'm going to go here
+
+I will copy and I will add it here and
+
+the third parameter will be a callback
+
+function so this will have an error and
+
+then we will have a decoded user or
+
+decoded information now if we have an
+
+error then in that case we will have a
+
+response status as four zero one and we
+
+are going to throw an an error so let's
+
+draw an error so I'm going to have a new
+
+keyword and then we are going to throw
+
+an error as user is not authorized so we
+
+are trying to verify the token but user
+
+has given a token which is not a valid
+
+token or he is using a token from some
+
+other users so in that case we are going
+
+to say that user is not authorized but
+
+if a user is using a correct token then
+
+we are going to get the user information
+
+so what we will do is let's have a
+
+console.log and I will log the decoded
+
+and I will save it now what we can do is
+
+in order to make use of this validate
+
+token we can go to the user routes so
+
+first let's uh export this so I will
+
+have the module dot export and this will
+
+be equal to the validate token so I'm
+
+going to have the validate token here
+
+all right I will save it and then what
+
+we will do is let's go to the user route
+
+and in the user route I can make use of
+
+a validate token because since only
+
+current user was the private route so I
+
+will have here the validate token it's
+
+Auto imported now let's go and let's
+
+give a try so I will have a API slash
+
+user slash current and when I send a
+
+request then we see that we have a 404
+
+and that is because the end point for
+
+the user current has a get method so
+
+let's change this to get and I will also
+
+go here and let's send the request and
+
+since we send the request we see the
+
+user is not authorized that means the
+
+token is either an expired token or the
+
+token is not a valid token so we first
+
+need to fetch a new token so what I will
+
+do is I'm going to create a a new
+
+request so let's go to the client I will
+
+have a new request and I will just copy
+
+this all right I will add it here and I
+
+will just do a login of the user first
+
+so let's login the user all right I need
+
+to pass the body so whenever I need to
+
+log in I will have the email address as
+
+the page oops I don't remember the email
+
+address and then I will have the
+
+password as plus one two three four five
+
+six so let's go and check the email
+
+address so I will go here I will have
+
+the email address so I'm going to copy
+
+the email address and let's add the
+
+email address here and this will be the
+
+email this will be the password so we
+
+have the request body now uh let's go
+
+and let's send it and we get the access
+
+token now let's copy the access token
+
+and now let's use the current which is a
+
+protected route so I'm going to go to my
+
+oh I will just remove this I will go to
+
+the auth and I will add my token here
+
+and now I will send the request and you
+
+see that when I send the request what we
+
+see is this is the decoded user we have
+
+so we have logged the decoded user but
+
+we also see that uh cannot set the
+
+headers after they are sent to the
+
+client so we are doing some mistake here
+
+and what we will do is uh let's go to
+
+our validate token so I'm gonna go to my
+
+validate token uh here and we have the
+
+decoded user here so what we will do is
+
+uh in the decoded user we can have the
+
+decoded dot user which will give us the
+
+user information so this is the user so
+
+what I will do is I will append this on
+
+my request dot user and then I will have
+
+this decoded dot user so what I have
+
+done here is that uh I have verified the
+
+token and I have extracted the
+
+information which was embedded in the
+
+token so the information which was
+
+embedded in the token was the this one
+
+the user information the expiry and the
+
+creation of the token and then I have
+
+taken the decoded dot user and this
+
+information I have attached this
+
+information to my request dot user
+
+property and then I'm going to have the
+
+next so this is the middleware so I'm
+
+just going to intercept the request I'm
+
+going to decode the token and then I'm
+
+going to append the user information on
+
+the request body not on the request body
+
+but on the request dot user property and
+
+now we will also make a check that if
+
+this we don't have a token then in that
+
+case that means the token is not
+
+provided or the token s or the user is
+
+not authorized so let's have a response
+
+dot status as 401 and we will throw in
+
+error so I will have the throw new error
+
+and the error will be that user is not
+
+authorized or token is missing in the
+
+request I will save it all right now
+
+let's go and give a try so I will go
+
+back here and then I'm going to send
+
+that so I'm sending it and I see the
+
+token is expired so let's go and have a
+
+new token all right I'm going to copy
+
+this I'm going to add it here so in the
+
+bearer token let's add it and now I'm
+
+going to send and you see that the
+
+current user information since we are
+
+not fetching the information from our
+
+database but this is a protected route
+
+so if you don't have an access token you
+
+will not be able to access this route so
+
+now we have successfully verified the
+
+Json web token and we have also used it
+
+on a private route now what we need to
+
+do is whenever someone is requesting the
+
+current user information we need to go
+
+go to the database in the mongodb and
+
+then we need to fetch the information
+
+and then provide it as a response so
+
+let's go to our user controller back and
+
+here what we will do is I'm going to go
+
+and I will remove this and here I'm
+
+going to have the request dot user and
+
+that will give me the user information
+
+because if we go to the validate token
+
+then we extract the user information and
+
+we put it as request dot user so when we
+
+have the request in that case we will
+
+just send the request.user so let's go
+
+and let's do so I'm going to send the
+
+request and since the token expired
+
+let's have a new token I'm going to copy
+
+this let's use the token in the auth and
+
+I'm going to send it and you see that
+
+this is the information of my current
+
+user the username is D malbia email
+
+address and then I have the ID all right
+
+so the next thing what we need to do is
+
+we need to protect all our contacts
+
+around so only a logged in user will be
+
+able to create delete update and read
+
+the contacts which they have created for
+
+themselves so what we will do is first
+
+we need to associate whenever you create
+
+a new contact we need to associate that
+
+contact with the user ID who is creating
+
+it so let's go in the contact model and
+
+in the contact model we need to update
+
+this model so what I will do is I'm
+
+going to add a new property and this new
+
+property will be the user ID and this ID
+
+will be for the user who is creating the
+
+contact and what we will do is we are
+
+going to have a type of this and the
+
+type of this ID will be the Mongoose dot
+
+schema dot types dot object ID because
+
+this ID is actually created in the
+
+mongodb and that's where we have the
+
+object ID and then we are going to use
+
+is as required so whenever you create a
+
+new contact we need to always have an
+
+user ID so that's how it will be
+
+associated with the particular user so
+
+I'm going to have it as true and I need
+
+to provide the reference of the model so
+
+the model is user so we have made this
+
+first change and now what we have to do
+
+is the next thing we need to go to our
+
+contact controller and we need to make
+
+all the routes as private so I will go
+
+to the contact controller and let's
+
+change this to private I'm going to copy
+
+I'm going to add it here I will also add
+
+it here then I will also add it here and
+
+then I will also add it here all right
+
+we have it and now let's use the uh
+
+validate token as a middleware for all
+
+the routes which we have so if we go to
+
+the contact routes then in the contact
+
+routes what we will do is we are going
+
+to make use of a validate token so this
+
+validate token will be used for all the
+
+routes so we are not going to use here
+
+validate token for each of the method
+
+but what we will do is we will have the
+
+router dot use so we are going to use a
+
+validate token on all the routes and
+
+let's get Auto imported so this is also
+
+one of the way you can do it if you have
+
+all the routes as protected route and
+
+you need to validate the token on all
+
+the routes or if you have only some of
+
+the routes then in that case you can
+
+make use like this all right so now
+
+let's go to the contact controller and
+
+in the contact controller now let's make
+
+use of the user ID and then we do the
+
+current operations so the first we will
+
+start with that I need to find my
+
+contacts so I need to find all the
+
+contacts with the user who is logged in
+
+so we need to fetch all the contacts of
+
+a logged in user so for that what we
+
+will have is we are going to have the
+
+user ID and this will be equals to the
+
+request dot user dot ID and I will save
+
+it and this user ID is the one we have
+
+just added in our contact model so this
+
+is the user ID so now if we go and try
+
+but before trying it what I want to do
+
+is I don't want my token to get expired
+
+every time so I will increase the
+
+expiration time of my token so I will go
+
+to the user controller and in in the
+
+user controller we are set as one minute
+
+so let's make it as 15 minutes and now I
+
+will go here and I will first log in
+
+with the token so I'm going to log in
+
+all right then I'm going to have my
+
+token and then what I will do is I'm
+
+going to have my contact and then I'm
+
+going to pass this token and now I'm
+
+going to fetch all the contacts which
+
+are created by the username the page
+
+malvia so I'm going to send it and we
+
+see that we get an empty arrays because
+
+right now there is no contact being
+
+created for this user which is the page
+
+now the user which is the page is going
+
+to create some contacts so if we want to
+
+create the contacts we are going to have
+
+a post request and in the post request
+
+what we will do is let's have a name and
+
+my contact is uh John so let me create a
+
+contact which is a John Day and the
+
+email address of John day is just uh
+
+John gmail.com and then we have a phone
+
+so let me have a phone and I will have
+
+one two three oops I will have 0 9 need
+
+something something so this is the
+
+contact which the page wants to create
+
+it so we also have a valid token and now
+
+if we send it we should be able to
+
+create it so let's go to our controller
+
+first and not in the user controller we
+
+need to go to uh oh okay let's close the
+
+packet Json let's close the environment
+
+variable file let's close the contact
+
+model and we now only interested in the
+
+contact controller now in the contract
+
+controller whenever we want to create a
+
+new contact what we need is we need to
+
+have the name email and phone number but
+
+along with that we will also need to
+
+associate the user ID who is creating
+
+this so what I will do is I'm going to
+
+have the user ID and this user ID will
+
+be equals to the
+
+request.user.id since we are using this
+
+as a middleware whenever we have a
+
+request this middleware is going to
+
+decode the token and then it's going to
+
+add the request dot user property and in
+
+the request.user property we will find
+
+the ID and then we can now create this
+
+contact all right let's go and let's
+
+give a try I will save it and now I will
+
+go and create it so if I send the
+
+request now you will see that this is
+
+the user ID of the page and the page now
+
+have created a contact for the name as
+
+John day and now what we can do is we
+
+can create multiple contacts for the
+
+page so uh in the next contact I'm going
+
+to create is nikesh G and then the email
+
+address is NYX and I'm going to change
+
+this phone number and then I'm going to
+
+send and you see that we have created a
+
+contact now if I want to see all the
+
+contacts which the page has created then
+
+I'm going to send request and you will
+
+see that we have two contacts which is
+
+created by the page now what I will do
+
+is I'm going to create a new user and
+
+then I'm going to see that the new user
+
+is able to get all this contacts or not
+
+so let's go back here and let's register
+
+a new user so I will have a new user so
+
+I will do the register and I'm going to
+
+pass the user name and the username this
+
+time will be let's have a user as Mark
+
+so Mark is an another user so we will
+
+have the email address as Ma at the red
+
+gmail.com and then I'm going to send it
+
+and we see that now a new user is
+
+created which is Mark now let's login
+
+with Mark so I'm going to log in with
+
+Mark so I will change the url as login
+
+and I'm going to just remove this all
+
+right I will send the request and we get
+
+an access token so I'm going to copy the
+
+access token and now what I'm trying to
+
+do is so now this access token is for
+
+the user the page and if we send the
+
+request he has created two contacts but
+
+now I want to change this for token for
+
+a mark and now this token belongs to
+
+Mark and if I send a request then you
+
+will see that we don't have any contacts
+
+because Mark doesn't created any new
+
+contacts for himself so this is how we
+
+are preventing cross user uh trying to
+
+access the context for other users and
+
+that's where the authentication is done
+
+the next thing we need to do is we need
+
+to update and delete the contact for a
+
+user so let's go to the con that
+
+controller back and here what we will do
+
+is uh whenever we need to get a contact
+
+we can get the contact with the help of
+
+a request dot dot param.id but if we
+
+want to update the contact what we will
+
+do is first we are going to fetch the
+
+contact from our database with the help
+
+of the ID and then this contact will
+
+contain the user ID of a user who has
+
+created so what we will do is uh before
+
+updating the contact we will make a
+
+check and the check will be that if the
+
+contact which we have just fetched as
+
+dot user ID dot to string and if this
+
+not equals to the request dot user dot
+
+ID then in that case we will know that a
+
+different user is trying to update a
+
+contact of an another user so what we
+
+will do is we are going to throw an
+
+error so I will have the response dot
+
+status and the status will be 403
+
+because a user is not authorized to
+
+update a contact of an another user and
+
+then I will throw an error so I will
+
+have the new error and then I will have
+
+the error as user don't have permission
+
+to update other user contacts so we have
+
+handled that case and if it matches so
+
+the contact.user ID matches with the
+
+request dot user ID then in that case we
+
+are going to Simply update the contact
+
+and we need to do a very similar thing
+
+for the delete also so I'm going to copy
+
+this in the delete also we first fetch
+
+the contact from the database we have
+
+the contact we checked that if the
+
+contact is found then in that case we
+
+remove it but before removing it we need
+
+to check that the contact which we found
+
+has a user ID and that user ID should
+
+match with the
+
+request.user.id and then we will have
+
+oops we made a mistake so user don't and
+
+this will also users don't so now we
+
+have protected all our crud operations
+
+of the contacts uh with the Json web
+
+token and now if we go and simply do a
+
+testing of it then we see that this
+
+token is for the mark and if we let's go
+
+and let's get the token for the page
+
+again so what I will do is I'm going to
+
+have page and I will send a request oops
+
+the email ID and the password is wrong
+
+so probably the email ID will be the
+
+page dot malvia all right now we have
+
+the token Now using this token I want to
+
+see that what all contacts this
+
+particular user has so this user has two
+
+contacts now a user want to update this
+
+contact so I'm going to copy this let's
+
+have a contact here if I go to the body
+
+then I will have an updated contact as
+
+nikesh godekar and I will make it
+
+updated I will send it and you will see
+
+that we have a contact but we made a
+
+mistake because it's a get and we need
+
+to make a put in order to update it and
+
+now I will send it and as soon as I send
+
+it you will see that the contact is
+
+updated nikesh gadekar update now what I
+
+will do is I'm going to remove this then
+
+I'm going to make a get and we get the
+
+contacts back with an updated contact
+
+now I want to delete this contact so I'm
+
+going to copy this and let's have here
+
+and I'm going to delete so let me have
+
+this and I'm going to send the request
+
+and you will see that it's 200 and
+
+hopefully this contact is deleted now so
+
+if I go and try to do a get on it then I
+
+should not be able to found the contacts
+
+so we see that the contact not found now
+
+what we will do is uh let's go and let's
+
+fetch all the contacts back so we don't
+
+have any contact so there is a problem
+
+so what we have done is if we go here
+
+and if we see then what we are doing is
+
+we are doing the contact dot remove and
+
+that is removing all the contacts from
+
+our database but we only want to remove
+
+the contact for which the user is
+
+passing the ID so what we will do is uh
+
+we will have to make a change here and
+
+we are going to have a delete one and
+
+which ID we need to delete is we're
+
+going to have the underscore and then we
+
+are going to have the request dot param
+
+dot ID now let's give a try so what I
+
+will do is first I'm going to create
+
+some contacts so I will go here and I
+
+will send a post post or write a contact
+
+is created let's create an another
+
+contact so I will have the next contact
+
+as John day and then I'm going to have
+
+this as John and then I will send it so
+
+now if I go and fetch then we see that
+
+we have two contacts and now I want to
+
+delete this updated so I'm going to copy
+
+this I'm going to add it here and then
+
+I'm going to go and do delete and I will
+
+send it so we see that okay it's 200 and
+
+the contact is deleted so if we go and
+
+do a get we should have contact not
+
+found but if we want to fetch all the
+
+contacts we still should have the John
+
+Day so you see that we have the John Day
+
+so now we have fixed the problem uh with
+
+the contact dot removed so we should use
+
+the contact dot delete one so we have
+
+created all the crud API of the contacts
+
+so we can now make use of the contacts
+
+API and then we can manage the contact
+
+based on the user so we also have a
+
+register user login user and then once a
+
+user is logged in he can create update
+
+delete and read all the contacts which
+
+he has created and similarly we can now
+
+have multiple users and they can they
+
+can manage their own contacts so that's
+
+all I have in this video I hope you
+
+liked the video a thumbs up is
+
+appreciated you can also connect with me
+
+my Facebook or Instagram you can follow
+
+me on Twitter for latest update and
+
+before you go don't forget to subscribe
+
+the channel and press the Bell icon so
+
+that you don't miss the videos like this
+
+one thank you thanks for watching
+
